@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>2027 廈門馬｜表單與資料流程</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Noto+Sans+TC:wght@400;500;700;900&display=swap">
+<style>
+/* Layout: four stacked zones read top to bottom (跑友 → 系統 → 行政 → 盧老師), joined by labelled down-arrows; access level is a coloured chip on every card; two reason panels close the page. */
+:root{
+  --bg:#F1F4F7; --surface:#FFFFFF; --ink:#0F1E2E; --muted:#56657A; --line:#D6DEE7;
+  --sea:#0D3657; --sea-2:#14507E; --bloom:#CF1D5B; --bloom-soft:#FCE6EE;
+  --pub:#17784A; --pub-soft:#E2F3E9; --auth:#9A5500; --auth-soft:#FFF0D4; --sec:#B42318; --sec-soft:#FDE8E6;
+  --f-display:"Barlow Condensed","Arial Narrow",system-ui,sans-serif;
+  --f-body:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0A131C; --surface:#122030; --ink:#E8EEF4; --muted:#9BABBD; --line:#26394D;
+  --sea:#08243A; --sea-2:#7DB6F5; --bloom:#FF5A8E; --bloom-soft:#3A1526;
+  --pub:#4CC58C; --pub-soft:#10301F; --auth:#F2B14C; --auth-soft:#33260C; --sec:#FF7B6F; --sec-soft:#3B1613; color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --bg:#0A131C; --surface:#122030; --ink:#E8EEF4; --muted:#9BABBD; --line:#26394D;
+  --sea:#08243A; --sea-2:#7DB6F5; --bloom:#FF5A8E; --bloom-soft:#3A1526;
+  --pub:#4CC58C; --pub-soft:#10301F; --auth:#F2B14C; --auth-soft:#33260C; --sec:#FF7B6F; --sec-soft:#3B1613; color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.6}
+.in{max-width:1080px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{margin:0;line-height:1.3;text-wrap:balance}
+p,ul{margin:0}
+.mast{background:var(--sea);color:#fff;position:relative;overflow:hidden}
+.mast .in{padding-block:26px 32px;display:grid;gap:8px;position:relative;z-index:1}
+.mast .eyebrow{font-size:13px;letter-spacing:.12em;opacity:.85}
+.mast h1{font-size:clamp(26px,5vw,36px);font-weight:900}
+.mast h1 span{color:#FF7AA5}
+.mast p{opacity:.9;max-width:46em}
+.mast::after{content:"";position:absolute;left:-10%;right:-10%;bottom:12px;height:8px;background:var(--bloom);transform:rotate(-2deg)}
+
+.legend{display:flex;flex-wrap:wrap;gap:8px 16px;font-size:14px;color:var(--muted);padding-block:18px 4px}
+.chip{display:inline-flex;align-items:center;gap:4px;font-size:12.5px;font-weight:700;border-radius:999px;padding:2px 10px;white-space:nowrap}
+.c-pub{background:var(--pub-soft);color:var(--pub)} .c-auth{background:var(--auth-soft);color:var(--auth)} .c-sec{background:var(--sec-soft);color:var(--sec)} .c-sys{background:var(--bloom-soft);color:var(--bloom)}
+
+main .in{padding-block:8px 48px;display:grid;gap:0}
+.zone{display:grid;grid-template-columns:150px 1fr;gap:16px;align-items:start;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px}
+@media (max-width:760px){.zone{grid-template-columns:1fr}}
+.zone-h{display:grid;gap:4px}
+.zone-h .who{font-family:var(--f-display);font-weight:800;font-size:28px;line-height:1;color:var(--sea-2)}
+.zone-h p{font-size:13.5px;color:var(--muted)}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;min-width:0}
+.card{border:1px solid var(--line);border-radius:12px;padding:12px 14px;display:grid;gap:6px;align-content:start;background:var(--bg);min-width:0}
+.card h3{font-size:16.5px;font-weight:900}
+.card .top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.card p{font-size:14px;color:var(--muted)}
+.card ul{padding-left:18px;font-size:14px;color:var(--muted);display:grid;gap:2px}
+.card.check{border-color:var(--bloom);border-style:dashed}
+.sys{background:var(--sea);color:#fff;border-color:transparent}
+.sys .zone-h .who{color:#FF7AA5}
+.sys .zone-h p{color:rgba(255,255,255,.75)}
+.sys .card{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.18)}
+.sys .card h3{color:#fff}
+.sys .card p{color:rgba(255,255,255,.8)}
+.arrow{display:flex;align-items:center;gap:10px;padding:8px 0 8px 66px;color:var(--muted);font-size:14px;font-weight:700}
+@media (max-width:760px){.arrow{padding-left:20px}}
+.arrow::before{content:"";width:2px;height:30px;background:var(--line);position:relative}
+.arrow b{color:var(--bloom)}
+.arrow span.tip{font-size:20px;line-height:1;color:var(--line)}
+
+.why{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:22px}
+@media (max-width:760px){.why{grid-template-columns:1fr}}
+.panel{border-radius:14px;padding:18px 20px;display:grid;gap:10px;align-content:start}
+.panel h2{font-size:20px;font-weight:900}
+.panel ol{margin:0;padding-left:20px;display:grid;gap:6px;font-size:15px}
+.p-priv{background:var(--sec-soft);color:var(--ink);border:1px solid var(--sec)}
+.p-priv h2{color:var(--sec)}
+.p-fast{background:var(--pub-soft);color:var(--ink);border:1px solid var(--pub)}
+.p-fast h2{color:var(--pub)}
+footer{color:var(--muted);font-size:13px}
+footer .in{padding-block:0 32px}
+</style>
+<style>body{margin:0}footer a{color:inherit;font-weight:700}</style>
+</head>
+<body>
+
+
+<header class="mast">
+  <div class="in">
+    <div class="eyebrow">2027 廈門馬 · 系統說明</div>
+    <h1>有哪些<span>表單</span>、資料怎麼<span>流動</span></h1>
+    <p>跑友只填兩個地方，其他都由系統自動處理。名單只有一份、證件不公開、每一步都有檢查，讓大家的個資受保護，資料處理又快又不容易出錯。</p>
+  </div>
+</header>
+
+<main>
+  <div class="in">
+    <div class="legend" aria-label="圖例">
+      <span><span class="chip c-pub">公開</span> 任何人可開</span>
+      <span><span class="chip c-auth">僅授權</span> 只有指定人員</span>
+      <span><span class="chip c-sec">機密</span> 只有玉潔與管理員</span>
+      <span><span class="chip c-sys">檢查</span> 系統自動檢查</span>
+    </div>
+
+    <section class="zone" aria-labelledby="z1">
+      <div class="zone-h"><span class="who" id="z1">跑友</span><p>自己填寫，手機就能完成</p></div>
+      <div class="cards">
+        <article class="card">
+          <div class="top"><h3>① 報名表</h3><span class="chip c-pub">公開</span></div>
+          <p>報名的唯一入口。姓名、跑團、手機、證件號碼、航班、旅遊與備註都填在這裡。</p>
+        </article>
+        <article class="card">
+          <div class="top"><h3>② 回報／補件網頁</h3><span class="chip c-pub">公開</span></div>
+          <ul><li>匯款回報（可幫多人）</li><li>查詢是否有人代繳</li><li>補交護照、台胞證影本</li></ul>
+          <p>只能送出、不能查看任何人的資料。</p>
+        </article>
+        <article class="card">
+          <div class="top"><h3>跑友須知</h3><span class="chip c-pub">公開</span></div>
+          <p>匯款帳戶與三個步驟的說明，可轉貼 LINE。</p>
+        </article>
+      </div>
+    </section>
+
+    <div class="arrow" role="presentation"><span><b>自動同步</b>（約 1 分鐘）＋ <b>自動檢查</b></span></div>
+
+    <section class="zone sys" aria-labelledby="z2">
+      <div class="zone-h"><span class="who" id="z2">系統</span><p>自動處理，不用人工複製貼上</p></div>
+      <div class="cards">
+        <article class="card">
+          <h3>名冊同步</h3>
+          <p>報名表＋團報名單合成一份名冊，每人一個固定編號，新報名自動加入。</p>
+        </article>
+        <article class="card">
+          <h3>身分核對與防濫用</h3>
+          <p>補件前比對手機末三碼與血型，錯 5 次暫停；檔案類型與大小都會檢查。</p>
+        </article>
+        <article class="card">
+          <h3>自動計算與標記</h3>
+          <p>金額是否相符、是否重複回報、報名備註自動帶入名冊，統計每 10 分鐘更新。</p>
+        </article>
+      </div>
+    </section>
+
+    <div class="arrow" role="presentation"><span>只有授權人員看得到</span></div>
+
+    <section class="zone" aria-labelledby="z3">
+      <div class="zone-h"><span class="who" id="z3">行政</span><p>玉潔對帳與核對；管理員維護</p></div>
+      <div class="cards">
+        <article class="card">
+          <div class="top"><h3>收款管理</h3><span class="chip c-auth">僅授權</span></div>
+          <ul><li>名冊：全部報名者與狀態</li><li>匯款回報：玉潔對照存摺</li><li>收款總覽、跑團統計</li></ul>
+        </article>
+        <article class="card">
+          <div class="top"><h3>證件管理</h3><span class="chip c-sec">機密</span></div>
+          <ul><li>證件補件：玉潔看影本、勾「採用」</li><li>證件總覽：誰已確認、誰需補件</li></ul>
+        </article>
+        <article class="card check">
+          <div class="top"><h3>資料異常提醒</h3><span class="chip c-sys">檢查</span></div>
+          <p>自動列出台胞證過期、號碼重複、資料缺漏、疑似重複報名、護照效期不足。</p>
+        </article>
+        <article class="card">
+          <div class="top"><h3>證件影本資料夾</h3><span class="chip c-sec">機密</span></div>
+          <p>每人一個子資料夾，檔名只用編號，不放姓名或護照號碼。</p>
+        </article>
+      </div>
+    </section>
+
+    <div class="arrow" role="presentation"><span>整理後只提供必要資料</span></div>
+
+    <section class="zone" aria-labelledby="z4">
+      <div class="zone-h"><span class="who" id="z4">盧老師</span><p>確認名單、安排航班與訂票</p></div>
+      <div class="cards">
+        <article class="card">
+          <div class="top"><h3>報名統計</h3><span class="chip c-auth">老師專用網址</span></div>
+          <p>隨時查詢報名人數，只顯示統計，不顯示證件。</p>
+        </article>
+        <article class="card check">
+          <div class="top"><h3>航班名單（Excel／PDF）</h3><span class="chip c-sys">檢查</span></div>
+          <p>依航班分組，含跑團、姓名、電話。● 需確認、★ 特別註記，一眼看出要處理的人。</p>
+        </article>
+        <article class="card">
+          <div class="top"><h3>訂票資料</h3><span class="chip c-sec">機密</span></div>
+          <p>證件核對完成後才匯出，只含訂票必要欄位，不含影本。</p>
+        </article>
+      </div>
+    </section>
+
+    <div class="why">
+      <section class="panel p-priv" aria-labelledby="w1">
+        <h2 id="w1">怎麼保護大家的個資</h2>
+        <ol>
+          <li>跑友網頁只能「送出」，看不到任何人已填的資料或證件。</li>
+          <li>證件影本與護照號碼只有玉潔與管理員能看，檔案不公開、不能轉分享。</li>
+          <li>名單上的姓名中間字以○顯示，手機號碼不會出現在網頁上。</li>
+          <li>給旅行社或老師的資料只含必要欄位，不含影本。</li>
+          <li>2027/1/31 系統自動刪除所有證件影本與護照號碼。</li>
+        </ol>
+      </section>
+      <section class="panel p-fast" aria-labelledby="w2">
+        <h2 id="w2">為什麼又快又不容易出錯</h2>
+        <ol>
+          <li>名單只有一份（報名表），系統自動同步，不再人工複製貼上。</li>
+          <li>每人一個固定編號，不靠姓名比對，同名或改名也不會搞混。</li>
+          <li>金額、重複回報、證件過期等問題由系統先標出來，人只處理例外。</li>
+          <li>每次補件都另存一筆、不覆蓋，玉潔決定採用哪一筆，有紀錄可查。</li>
+          <li>對帳、核對時間自動記錄，統計自動更新，大家看到的是同一份數字。</li>
+        </ol>
+      </section>
+    </div>
+  </div>
+</main>
+<footer><div class="in">2027 廈門馬拉松 · 台灣跑者賽中賽｜<a href="index.html">跑友須知</a>｜<a href="privacy.html">隱私權政策</a>｜系統問題請聯絡管理員 Will</div></footer>
+
+</body>
+</html>
