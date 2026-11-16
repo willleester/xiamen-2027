@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>2027 廈門馬｜跑友須知</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Noto+Sans+TC:wght@400;500;700;900&display=swap">
+<style>
+/* Layout: one phone-width column. Navy start banner, the race-bib bank card, one big "open the page" button, then three short task cards and a small FAQ. */
+:root{
+  --bg:#F1F4F7; --surface:#FFFFFF; --ink:#0F1E2E; --muted:#56657A; --line:#D6DEE7;
+  --sea:#0D3657; --bloom:#CF1D5B; --bloom-soft:#FCE6EE; --on-bloom:#FFFFFF; --link:#14507E;
+  --f-display:"Barlow Condensed","Arial Narrow",system-ui,sans-serif;
+  --f-body:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0A131C; --surface:#122030; --ink:#E8EEF4; --muted:#9BABBD; --line:#26394D;
+  --sea:#08243A; --bloom:#FF5A8E; --bloom-soft:#3A1526; --on-bloom:#25040F; --link:#7DB6F5; color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --bg:#0A131C; --surface:#122030; --ink:#E8EEF4; --muted:#9BABBD; --line:#26394D;
+  --sea:#08243A; --bloom:#FF5A8E; --bloom-soft:#3A1526; --on-bloom:#25040F; --link:#7DB6F5; color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.7}
+.in{max-width:600px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{margin:0;line-height:1.3;text-wrap:balance}
+p,ol,ul{margin:0}
+.num{font-family:var(--f-display);font-variant-numeric:tabular-nums}
+.top{background:var(--sea);color:#fff;position:relative;overflow:hidden}
+.top .in{padding-block:26px 58px;display:grid;gap:8px;position:relative;z-index:1}
+.top .eyebrow{font-size:13px;letter-spacing:.12em;opacity:.85}
+.top h1{font-size:clamp(28px,8vw,36px);font-weight:900}
+.top p{opacity:.92}
+.top::after{content:"";position:absolute;left:-10%;right:-10%;bottom:20px;height:9px;background:var(--bloom);transform:rotate(-3deg)}
+main .in{display:grid;gap:20px;padding-block:0 40px}
+.bib{margin-top:-36px;position:relative;z-index:2;background:var(--surface);border:1px solid var(--line);border-radius:10px;overflow:hidden;box-shadow:0 10px 26px rgba(8,30,50,.16)}
+.bib-top{background:var(--bloom);color:var(--on-bloom);padding:14px 18px 10px;display:flex;justify-content:space-between;align-items:flex-end;gap:10px;flex-wrap:wrap}
+.bib-top b{font-size:14px;letter-spacing:.08em}
+.fee{font-family:var(--f-display);font-weight:800;font-size:48px;line-height:.9}
+.fee small{font-size:20px;margin-right:3px}
+.bib-body{padding:14px 18px 18px;display:grid;gap:4px;font-size:16px}
+.bib-body .acct{font-family:var(--f-display);font-weight:800;font-size:30px;letter-spacing:.06em}
+.go{display:flex;align-items:center;justify-content:center;min-height:60px;border-radius:14px;background:var(--bloom);color:var(--on-bloom);font-weight:900;font-size:20px;text-decoration:none}
+.go:focus-visible{outline:3px solid var(--link);outline-offset:3px}
+.sub{font-size:14px;color:var(--muted);text-align:center;margin-top:-10px}
+.task{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;display:grid;gap:10px}
+.task h2{font-size:20px;font-weight:900;display:flex;gap:10px;align-items:center}
+.task h2 .k{font-family:var(--f-display);font-weight:800;background:var(--sea);color:#fff;border-radius:6px;padding:0 9px;font-size:17px}
+.task ol{padding-left:22px;display:grid;gap:4px}
+.need{background:var(--bloom-soft);border-radius:10px;padding:10px 12px;font-size:15.5px}
+.need b{display:block}
+.faq{display:grid;gap:10px}
+details{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 16px}
+summary{font-weight:700;cursor:pointer}
+details p{margin-top:8px;font-size:15.5px;color:var(--muted)}
+a{color:var(--link);font-weight:700}
+footer{font-size:14px;color:var(--muted)}
+footer .in{padding-block:0 36px;display:grid;gap:6px}
+</style>
+<style>body{margin:0}</style>
+</head>
+<body>
+
+
+<header class="top">
+  <div class="in">
+    <div class="eyebrow">2027 廈門馬拉松 · 台灣跑者賽中賽</div>
+    <h1>團費匯款／證件補件</h1>
+    <p>一個網址完成兩件事，可以分開做。先匯款回報，證件之後再補也沒關係。</p>
+  </div>
+</header>
+
+<main>
+  <div class="in">
+    <section class="bib" aria-label="匯款帳戶">
+      <div class="bib-top"><b>團費 · 每人</b><span class="fee"><small>NT$</small>29,500</span></div>
+      <div class="bib-body">
+        <span>臺灣銀行 仁德分行（代號 <b class="num" style="font-size:19px">004</b>）</span>
+        <span>戶名：亞洲馬拉松大聯盟盧瑞忠</span>
+        <span class="acct">227001012051</span>
+      </div>
+    </section>
+
+    <a class="go" href="https://script.google.com/macros/s/AKfycbz_wr21owLyLP0jWn23VR74EWArtCy42OxZD_uODxY-h589zuzExV1ZG7nEVfvde0fA/exec" target="_blank" rel="noopener">開啟回報／補件網頁</a>
+    <p class="sub">網頁上方會出現「此應用程式由 Google Apps Script 使用者建立」，這是 Google 的正常提示。</p>
+
+    <section class="task">
+      <h2><span class="k">A</span>我已匯款，要回報</h2>
+      <ol>
+        <li>點「我已匯款，要回報」。</li>
+        <li>填匯款人姓名（存摺上會出現的名字）。</li>
+        <li>選跑團、勾姓名。幫多人一起匯可以勾多位，不同跑團也可以。</li>
+        <li>填匯款日期、匯出帳號後五碼、實際金額。</li>
+        <li>確認內容後送出，記下<b>回報編號</b>（建議截圖）。</li>
+      </ol>
+      <p style="font-size:15px;color:var(--muted)">送出後狀態是「待對帳」，玉潔對完存摺會改成「已確認入帳」。</p>
+    </section>
+
+    <section class="task">
+      <h2><span class="k">B</span>團長或親友已幫我匯款</h2>
+      <ol>
+        <li>點「團長或親友已幫我匯款」。</li>
+        <li>選跑團、選姓名，按「查詢」。</li>
+        <li>顯示「已有人回報」就不用再做任何事。</li>
+      </ol>
+      <p style="font-size:15px;color:var(--muted)">查不到的話，請先問幫你匯款的人是否回報了；對方已匯款但不方便回報，請聯絡玉潔。</p>
+    </section>
+
+    <section class="task">
+      <h2><span class="k">C</span>補交訂票證件</h2>
+      <div class="need"><b>先準備好：</b>護照號碼（9 位數字）、護照到期日、護照照片頁、台胞證照片（有照片與號碼的那面）</div>
+      <ol>
+        <li>點「補交訂票證件」。</li>
+        <li>選跑團、選姓名，輸入<b>報名時填的手機末三碼</b>，再選<b>血型</b>。</li>
+        <li>填護照號碼和到期日，上傳兩張照片（可直接用手機拍）。</li>
+        <li>勾選同意個資說明，送出，記下<b>補件編號</b>。</li>
+      </ol>
+      <p style="font-size:15px;color:var(--muted)">拍照時四個角都要入鏡、字要看得清楚。照片會自動縮小，不用擔心檔案太大。</p>
+    </section>
+
+    <section class="faq" aria-label="常見問題">
+      <h2 style="font-size:20px;font-weight:900">常見問題</h2>
+      <details><summary>找不到我的跑團或名字？</summary><p>跑團名稱已整理成統一寫法，例如麗山的各種寫法都歸在「內湖麗山長跑」，北大歸在「北大長跑」，報名時沒填跑團的在「個人報名」。姓名中間字會以○顯示。仍找不到請聯絡玉潔。</p></details>
+      <details><summary>手機末三碼和血型輸入了還是對不上？</summary><p>請輸入「報名表上填的」手機號碼末三碼。連續錯 5 次會暫停 30 分鐘，請聯絡玉潔協助確認。</p></details>
+      <details><summary>證件拍錯了，可以重傳嗎？</summary><p>可以。回到同一個網址重新送出即可，每次都會另存一筆，由玉潔確認採用哪一筆。</p></details>
+      <details><summary>我的證件資料會給誰看？</summary><p>只有行政玉潔與系統管理員可以查看，用於團體機票與入境作業。網頁上無法讀取已上傳的證件，檔案不公開。2027/1/31 會統一刪除影本與護照號碼。</p></details>
+      <details><summary>要修改報名資料（航班、衣服尺寸、台胞證）？</summary><p>請使用<a href="https://script.google.com/macros/s/AKfycbw0neucpS0A5UN2Q5X12rwzhz2ywUvrTOQKbfQwzyP6KGwRQOVY89JXb5rK2fj1dw/exec" target="_blank" rel="noopener">報名資料查詢與修改</a>，網頁底部也有連結。</p></details>
+    </section>
+  </div>
+</main>
+
+<footer><div class="in"><p>有任何問題，請聯絡行政 <b>玉潔</b>。</p><p>個資說明：<a href="privacy.html">隱私權政策</a></p></div></footer>
+
+</body>
+</html>
