@@ -47,7 +47,9 @@ a{color:var(--link);font-weight:700;overflow-wrap:anywhere}
 .mast::after{content:"";position:absolute;left:-10%;right:-10%;bottom:12px;height:8px;background:var(--bloom);transform:rotate(-2deg)}
 
 main .in{padding-block:24px 48px;display:grid;gap:28px}
-.lanes{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.lanes{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
+.lane.teacher .lane-h .tag{background:var(--sea)}
+.who{font-size:13px;font-weight:700;color:var(--muted);letter-spacing:.06em}
 @media (max-width:820px){.lanes{grid-template-columns:1fr}}
 .lane{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px;display:grid;gap:14px;align-content:start;min-width:0}
 .lane-h{display:flex;align-items:center;gap:12px}
@@ -91,9 +93,9 @@ footer .in{padding-block:0 32px}
 
 <header class="mast">
   <div class="in">
-    <div class="eyebrow">2027 廈門馬 · 行政作業手冊（新版系統）</div>
-    <h1>玉潔的<span>收款對帳</span>與<span>證件核對</span></h1>
-    <p>名單由系統自動從報名表同步，不用再複製貼上。你只需要在兩份試算表裡「選下拉選單、填說明」，時間會自動記錄，統計會自動更新。</p>
+    <div class="eyebrow">2027 廈門馬 · 行政作業手冊（玉潔・盧老師）</div>
+    <h1><span>報名</span>、<span>收款</span>、<span>證件</span>與<span>航班</span></h1>
+    <p>報名表是唯一的名單來源，系統約 1 分鐘內自動同步，不用再複製貼上。A、B 是玉潔的對帳與核對步驟；C 是盧老師查詢報名、確認航班與訂票的方式。</p>
   </div>
 </header>
 
@@ -127,13 +129,28 @@ footer .in{padding-block:0 32px}
         </ol>
         <div class="tip"><b>判斷一個人是否完成：</b>「證件總覽」的「證件狀態」為「已確認」＝已採用且核對無誤。「已提交」不等於「已確認」。</div>
       </article>
+
+      <article class="lane teacher">
+        <div class="lane-h"><span class="tag">C</span><h2>報名與航班</h2></div>
+        <p class="where">對象：<b>盧老師</b>（不需要 Google 帳號）</p>
+        <ol class="steps">
+          <li><div><strong>報名一律用報名表</strong><span class="d">新報名約 1 分鐘內會出現在系統，跑友就能匯款回報與補件。報名表連結見下方「常用網址」。</span></div></li>
+          <li><div><strong>查詢報名人數</strong><span class="d">用「報名統計」頁即時查詢。統計頁依跑友在表單上勾選的航班計算；有個別安排的人，以管理員提供的航班名單為準。</span></div></li>
+          <li><div><strong>確認航班名單</strong><span class="d">管理員（Will）定期整理成 Excel／PDF：華信航空、廈門航空、台中大腳丫團報（廈門航空）、個別安排。標 <b>●</b> 的跑友備註寫了可能有誤的資料，請協助聯繫確認；標 <b>★</b> 的是特別註記（例：機票自理，請勿代訂）。</span></div></li>
+          <li><div><strong>個別行程需求</strong><span class="d">跑友寫在報名表最後一題「其他需求或備註」。系統會自動帶到名冊備註，航班名單另列「個別安排」分頁，不會漏掉。</span></div></li>
+          <li><div><strong>取得訂票資料</strong><span class="d">玉潔核對證件並「採用」後，由管理員從系統匯出訂票資料（中文／英文姓名、護照號碼與效期、台胞證號碼與效期、航班），只含必要欄位，不含影本。</span></div></li>
+        </ol>
+        <div class="tip"><b>重複報名：</b>同一人在報名表與團報名單都出現時，系統會標「疑似重複」。確認後由玉潔在「名冊」把多出來的一筆改成「取消」，避免重複收費與重複訂位。</div>
+      </article>
     </section>
 
     <section class="grid3">
       <article class="card">
         <h3>常用網址</h3>
-        <p class="where">試算表與資料夾僅限玉潔與管理員開啟，其他人點了會顯示「需要存取權」。</p>
+        <p class="where">前四項公開，任何人都能開；試算表與資料夾僅限玉潔與管理員，其他人點了會顯示「需要存取權」。</p>
         <div class="links">
+          <div><span class="k">報名表（公開）</span><a href="https://forms.gle/K3oqjn8UoXm5x3Qj7" target="_blank" rel="noopener">報名資料填寫</a></div>
+          <div><span class="k">報名統計（盧老師查詢報名人數）</span><a href="https://script.google.com/macros/s/AKfycbw0neucpS0A5UN2Q5X12rwzhz2ywUvrTOQKbfQwzyP6KGwRQOVY89JXb5rK2fj1dw/exec?page=stats" target="_blank" rel="noopener">報名統計</a></div>
           <div><span class="k">跑友網頁（匯款回報＋證件補件，公開）</span><a href="https://script.google.com/macros/s/AKfycbz_wr21owLyLP0jWn23VR74EWArtCy42OxZD_uODxY-h589zuzExV1ZG7nEVfvde0fA/exec" target="_blank" rel="noopener">開啟跑友網頁</a></div>
           <div><span class="k">跑友須知（公開）</span><a href="index.html">跑友須知</a></div>
           <div><span class="k">收款管理（對帳用，玉潔／管理員）</span><a href="https://docs.google.com/spreadsheets/d/1zF1pQzymmNT6m3caqLBWbxbm7XkBnNvFBSBRQ9xszJk/edit" target="_blank" rel="noopener">2027廈門馬｜收款管理</a></div>
@@ -157,8 +174,10 @@ footer .in{padding-block:0 32px}
         <h3>名冊與跑團</h3>
         <ul class="dots">
           <li>「名冊」自動同步（新報名約 1 分鐘內會出現在跑友網頁）：Google 表單報名者＋台中大腳丫團報名單。新報名會自動出現。</li>
+          <li>報名表最後一題「其他需求或備註」的內容，系統會自動帶到「名冊」備註欄（只增加、不覆蓋你寫的內容）。</li>
           <li>取消報名：在「名冊」把該人的「名單狀態」改成「取消」。不要刪列。</li>
-          <li>特殊狀況寫在「名冊」的「備註」欄（例：機票自理、工作人員）。</li>
+          <li>名單狀態出現「疑似重複」：確認是同一人後，把多出來的一筆改成「取消」。</li>
+          <li>特殊狀況寫在「名冊」的「備註」欄（例：機票自理、工作人員、個別行程）。</li>
           <li>跑團名稱已統一：麗山各寫法 → 內湖麗山長跑；北大 → 北大長跑；未填 → 個人報名。新的寫法會出現在「跑團對照」，填右欄即可。</li>
         </ul>
       </article>
@@ -169,6 +188,7 @@ footer .in{padding-block:0 32px}
         <b>證件個資保密（請務必遵守）</b>
         <span>· 證件影本與護照號碼只用於本次團體機票與入境作業。</span>
         <span>· 不下載到手機或個人電腦、不截圖、不轉傳 LINE 或 Email。需要給旅行社或盧老師時，由管理員從系統匯出「訂票資料」，只含必要欄位。</span>
+        <span>· 航班名單含跑友手機號碼，列印後請妥善保管，勿張貼或外流。</span>
         <span>· 檔案已設定成你無法再分享給別人，這是正常的保護設定。</span>
         <span>· 2027/1/31 系統自動刪除所有影本與護照號碼。</span>
       </article>
@@ -176,7 +196,7 @@ footer .in{padding-block:0 32px}
   </div>
 </main>
 
-<footer><div class="in"><a href="privacy.html">隱私權政策</a>｜系統問題（打不開、名單不對、按鈕沒反應）請聯絡管理員 Will。最後更新：2026/11/16。</div></footer>
+<footer><div class="in"><a href="privacy.html">隱私權政策</a>｜系統問題（打不開、名單不對、按鈕沒反應）請聯絡管理員 Will。最後更新：2026/11/16（加入報名與航班流程）。</div></footer>
 
 </body>
 </html>
