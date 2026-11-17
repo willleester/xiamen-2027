@@ -83,6 +83,23 @@ ul.dots{padding-left:18px;display:grid;gap:6px;font-size:14.5px}
 .warnbox{background:var(--err-soft);color:var(--err);border-radius:12px;padding:14px 16px;display:grid;gap:6px;font-size:14.5px}
 .warnbox b{font-size:16px}
 .private{background:var(--warn-soft);color:var(--warn);border-radius:12px;padding:14px 16px;display:grid;gap:6px;font-size:14.5px}
+.board{background:var(--surface);border:2px solid var(--sea);border-radius:16px;padding:20px;display:grid;gap:16px}
+.board-h{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px}
+.board-h h2{font-size:22px;font-weight:900}
+.flowline{display:flex;flex-wrap:wrap;align-items:center;gap:6px;font-size:14px;background:var(--bg);border-radius:10px;padding:10px 12px}
+.flowline b{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:1px 10px}
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media (max-width:900px){.cols{grid-template-columns:1fr}}
+.col{display:grid;gap:10px;align-content:start;min-width:0}
+.col h3{font-size:16px;font-weight:900;display:flex;gap:8px;align-items:center}
+.col h3 .who2{font-size:12px;font-weight:700;color:#fff;background:var(--sea);border-radius:6px;padding:1px 8px}
+.col.y h3 .who2{background:var(--bloom)}
+.col.w h3 .who2{background:var(--muted)}
+.item{border:1px solid var(--line);border-radius:10px;padding:10px 12px;display:grid;gap:4px;font-size:14.5px}
+.item .t{font-weight:700;display:flex;gap:8px;align-items:flex-start;justify-content:space-between}
+.item .t .chip{flex:none}
+.item .d{color:var(--muted)}
+.ids{font-family:var(--f-display);font-weight:700;letter-spacing:.02em}
 footer{color:var(--muted);font-size:13px}
 footer .in{padding-block:0 32px}
 </style>
@@ -101,6 +118,56 @@ footer .in{padding-block:0 32px}
 
 <main>
   <div class="in">
+    <section class="board" id="board" aria-label="三方同步看板">
+      <div class="board-h">
+        <h2>📌 三方同步看板</h2>
+        <span class="where">盧老師・玉潔・Will｜最後更新 <b>2026/11/17</b></span>
+      </div>
+      <div class="flowline">
+        <span>LINE 上的資訊</span>→<b>Will 登進系統</b>→<b>寫在這個看板</b>→<span>玉潔照原流程對帳／核對</span>
+        <span style="flex-basis:100%;color:var(--muted)">以這個看板為準。看板上沒有的，代表系統還沒記錄，請在 LINE 告訴 Will。為保護個資，姓名中間字以○顯示，請用報名編號（XM＋數字，與老師名單上的編號相同）溝通。</span>
+      </div>
+      <div class="cols">
+        <div class="col t">
+          <h3><span class="who2">盧老師</span>請協助確認</h3>
+          <div class="item"><div class="t">繳費人數：老師說 31 人，LINE 上是 32 人<span class="chip c-wait">待確認</span></div>
+            <span class="d">LINE 大群貼出的已匯款共 32 人。最後一則（XM026 黃○貞，11/16 21:46）可能是在老師統計之後才貼的。另外有 3 人只用網頁回報、沒有在 LINE 貼：<span class="ids">XM060</span> 吳○寶、<span class="ids">XM061</span> 陳○幸、<span class="ids">XM072</span> 陳○華。目前系統裡回報已匯款的合計 <b>35 人</b>，最後以存摺入帳為準。請老師告知 31 人是看存摺還是看 LINE、是哪個時間點的數字。</span></div>
+          <div class="item"><div class="t">只寫「已繳」，沒有金額和後五碼<span class="chip c-wait">待確認</span></div>
+            <span class="d"><span class="ids">XM023</span> 呂○柱、<span class="ids">XM051</span> 戴○彥。請從存摺確認是否入帳，或請本人補上帳號後五碼。</span></div>
+          <div class="item"><div class="t">華信 1/8 散客名單（36 人）<span class="chip c-wait">待提供</span></div>
+            <span class="d">老師 11/16 已按華信規定提交 36 人散客英文名單，其餘走團體名單。請提供這 36 人的<b>報名編號</b>，系統才能逐人標記「已提報」，避免重複提報或漏報。</span></div>
+          <div class="item"><div class="t">日後要從 36 人中扣除的 5 人<span class="chip c-wait">待說明</span></div>
+            <span class="d"><span class="ids">XM028</span> 王○珍（機票自理）、<span class="ids">XM032</span> 張○潔、<span class="ids">XM041</span> 陳○豪、<span class="ids">XM047</span> 沈○清、<span class="ids">XM055</span> 王○卿。除了 XM028，其他 4 位扣除的原因（例如改搭其他班機）請老師說明，名冊備註才寫得正確。</span></div>
+          <div class="item"><div class="t">缺英文姓名<span class="chip c-wait">待補</span></div>
+            <span class="d"><span class="ids">XM015</span> 洪○成。請本人用「報名資料查詢與修改」補上英文姓名（與護照相同）。</span></div>
+        </div>
+
+        <div class="col y">
+          <h3><span class="who2">玉潔</span>對帳時請留意</h3>
+          <div class="item"><div class="t">新增「回報管道」欄（R 欄）<span class="chip c-ok">已上線</span></div>
+            <span class="d">「網頁」＝跑友自己回報；「LINE代登」＝跑友在 LINE 貼匯款資訊、由 Will 代為登記。<b>兩種都照原本流程對存摺</b>，沒有差別。「系統提示」欄會寫缺什麼（例：未提供後五碼）。</span></div>
+          <div class="item"><div class="t">LINE 代登 9 人（11/16 LINE 大群）<span class="chip c-wait">待對帳</span></div>
+            <span class="d">回報編號 <span class="ids">PAY0023–PAY0031</span>：<span class="ids">XM001</span> 吳○鋼、<span class="ids">XM002</span> 吳○定、<span class="ids">XM012</span> 林○豐、<span class="ids">XM018</span> 林○喜、<span class="ids">XM019</span> 王○、<span class="ids">XM023</span> 呂○柱、<span class="ids">XM026</span> 黃○貞、<span class="ids">XM051</span> 戴○彥、<span class="ids">XM101</span> 鄧○榮。其他在 LINE 貼過的人都已經有網頁回報，不會重複。</span></div>
+          <div class="item"><div class="t">存摺上的名字和跑友不同<span class="chip c-off">提醒</span></div>
+            <span class="d"><span class="ids">XM013</span> 陳○萍由廖○源代匯；<span class="ids">XM024</span> 宋○崙由林○芸代匯；<span class="ids">XM043/044</span> 由李○杰一筆匯兩人。看「匯款人姓名」與「付款對象」欄對照。</span></div>
+          <div class="item"><div class="t">匯款日期填成民國年<span class="chip c-off">提醒</span></div>
+            <span class="d"><span class="ids">PAY0013</span>（XM096 孫○華）匯款日期寫成 0115/11/16，實際是 2026/11/16。</span></div>
+        </div>
+
+        <div class="col w">
+          <h3><span class="who2">Will</span>處理進度</h3>
+          <div class="item"><div class="t">LINE 匯款資訊登入系統<span class="chip c-ok">已完成</span></div>
+            <span class="d">11/17：9 人代登為「待對帳」。之後 LINE 上有新的匯款資訊，Will 會用同樣方式登記並更新這裡。</span></div>
+          <div class="item"><div class="t">因故退團 2 人<span class="chip c-wait">處理中</span></div>
+            <span class="d"><span class="ids">XM045</span> 林○良、<span class="ids">XM052</span> 余○玲（盧老師 11/16 告知）。名冊將改為「取消」，不再計入應收。</span></div>
+          <div class="item"><div class="t">疑似重複報名 4 人<span class="chip c-wait">詢問中</span></div>
+            <span class="d">報名表與大腳丫團報都有一筆：顧○恬、吳○寶、陳○幸、林○育（<span class="ids">XM097–XM100</span>）。確認後保留一筆，另一筆改「取消」。</span></div>
+          <div class="item"><div class="t">訂位狀態欄<span class="chip c-off">規劃中</span></div>
+            <span class="d">收到 36 人散客名單後，名冊會新增「訂位狀態」，記錄每個人提報到哪一份名單。</span></div>
+        </div>
+      </div>
+    </section>
+
     <section class="lanes">
       <article class="lane">
         <div class="lane-h"><span class="tag">A</span><h2>收款對帳</h2></div>
@@ -196,7 +263,7 @@ footer .in{padding-block:0 32px}
   </div>
 </main>
 
-<footer><div class="in"><a href="flow.html">表單與資料流程</a>｜<a href="privacy.html">隱私權政策</a>｜系統問題（打不開、名單不對、按鈕沒反應）請聯絡管理員 Will。最後更新：2026/11/16（加入報名與航班流程）。</div></footer>
+<footer><div class="in"><a href="flow.html">表單與資料流程</a>｜<a href="privacy.html">隱私權政策</a>｜系統問題（打不開、名單不對、按鈕沒反應）請聯絡管理員 Will。最後更新：2026/11/17（新增三方同步看板、LINE 代登說明）。</div></footer>
 
 </body>
 </html>
